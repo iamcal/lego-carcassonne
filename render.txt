@@ -1,0 +1,57 @@
+Steps to render images from L3B file
+====================================
+
+* save .L3B file
+* rename to .LDR
+* open in LP3AO
+* set view preset to 3/4 Front Left
+* set camera angle to 60
+* turn on LGEO library
+* create .POV
+* add lines:
+
+#version unofficial MegaPov 1.10;
+
+#declare LDRAW_RAD_LEVEL = 1; // 5=final
+#declare LDRAW_MTL = 256;
+#declare INDEXOFREFRACTION=1.52;
+#declare LDRAW_RAD_NORMAL = off;
+#declare LDRAW_RAD_MEDIA = off;
+
+#include "rad_def.inc"
+global_settings {
+  assumed_gamma 1.4
+  max_trace_level LDRAW_MTL
+  adc_bailout 0.01/2
+  radiosity {
+    Rad_Settings(LDRAW_RAD_LEVEL, LDRAW_RAD_NORMAL, LDRAW_RAD_MEDIA)
+  }
+}
+
+sky_sphere {
+  pigment {
+    gradient -y
+    color_map {
+      [ 1 rgb 1 ]
+    }
+  }
+}
+
+#include "koyancolours.inc"
+
+* change floor ambient=0, diffuse=1
+* delete the existing lights
+* add lights:
+
+light_source {
+  <-5000,-5000,-5000>
+  color rgb .4
+  area_light 200, 200, 10, 10
+  adaptive 1
+  jitter
+  circular
+  orient
+}
+
+* render at a very high resolution
+* resize by 50% in PSP/PS using bicubic resample

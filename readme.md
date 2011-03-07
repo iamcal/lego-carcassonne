@@ -6,3 +6,5 @@ These are the source files for my Lego Carcassonne models. You'll need <a href="
 You can find a lot more details, including sample renders, in <a href="http://www.iamcal.com/lego-carcassonne/">this article</a>.
 
 The <code>.l3b</code> and <code>.ldr</code> files are the same format and contain the model designs. The <code>.pov</code> files are rendering instrcutions. All of the files are hand-editable.
+
+The <code>ldd_tile.lxf</code> folder contains the Lego Digital Designer source for a single tile. It would cost around $25 to purchase, putting the whole game set at around $2000. Ouch! The LDD-generated instructions for building the tile are also included, although I had to tweak step 1 to including the parts list (appeasr to be a bug in the software) and some of the steps are not very clear at all (I'm looking at you, step 11).
